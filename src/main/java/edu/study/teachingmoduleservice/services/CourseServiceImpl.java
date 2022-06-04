@@ -52,11 +52,13 @@ public class CourseServiceImpl {
         relation.setGradeOfCourseComplexity(DEFAULT_GRADE);
         relation.setRegisteredAt(LocalDateTime.now());
         relationRepository.save(relation);
+        List<AccountCourseRelation> all = relationRepository.findAll();
+        LOGGER.info("User added course with id " + courseId + " all relations: " + all);
     }
 
     public AccountCourseRelation getAccountCourseRelation(String courseId, String username) {
         AccountCourseRelation relation = relationRepository
-                .findById(courseId + "_" + username)
+                .findById(courseId + "_" + username.split("[@]")[0])
                 .orElseThrow(()-> new NoSuchElementException("There no such relation" + courseId + "_" + username));
         LOGGER.debug("selecting relation: " + relation.getRelationId());
         return relation;

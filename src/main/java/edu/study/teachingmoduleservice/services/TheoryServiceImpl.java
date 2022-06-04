@@ -29,6 +29,10 @@ public class TheoryServiceImpl {
         }
     }
 
+    public TheoryMaterial getTheoryById(String theoryId){
+        return theoryRepository.findById(theoryId).orElseThrow(NoSuchElementException::new);
+    }
+
     public void addTheory(TheoryMaterial theoryMaterial) {
         try {
             theoryRepository.save(theoryMaterial);

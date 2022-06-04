@@ -36,9 +36,10 @@ public class CoursesController {
     }
 
     @GetMapping("/courses/{courseId}/student/{username}")
-    public String courseProgressPage(@PathVariable String courseId, @PathVariable String username, Model model) {
+        public String courseProgressPage(@AuthenticationPrincipal User user, @PathVariable String courseId, @PathVariable String username, Model model) {
         AccountCourseRelation accountCourseRelation = courseService.getAccountCourseRelation(courseId, username);
         Course course = accountCourseRelation.getCourse();
+        model.addAttribute("user", user);
         model.addAttribute("course", course);
         model.addAttribute("relation", accountCourseRelation);
         model.addAttribute("courseTitle", course.getCourseId().replace("_", " "));

@@ -6,7 +6,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title th:text="${courseTitle}></title>
 </head>
 <body>
 <div class="container mt-5">
@@ -29,33 +28,25 @@
             </div>
         </div>
 
-        <p><a th:href="@{/courses}">Select new course</a> </p>
-
         <table border="2px">
             <thead>
             <tr>
-                <th> Course Name </th>
+                <th> Topic </th>
                 <th> Description </th>
                 <th> Approximate number of hours</th>
                 <th> Complexity </th>
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${userCourses.empty}">
-                <td colspan="2"> You`re not registered at any course yet...</td>
-            </tr>
-            <tr th:each="course : ${userCourses}">
-                <td><span th:text="${course.courseId}"> Name </span></td>
-                <td><span th:text="${course.description}"> Description </span></td>
-                <td><span th:text="${course.hours}"> Hours </span></td>
-                <td><span th:text="${course.complexityValue}"> Complexity </span></td>
-                <td>
-                    <form th:action="@{/courses/open}" method="post">
-                        <input type="hidden" name="courseId" th:value="${course.courseId}" />
-                        <input type="submit" value="Add" class="btn btn-danger" />
-                    </form>
-                </td>
-            </tr>
+                <tr th:each="topic : ${course.topics}">
+                    <td><span th:text="${topic.topicId}"> Name </span></td>
+                    <td><span th:text="${topic.description}"> Description </span></td>
+                    <td><span th:text="${topic.hours}"> Hours </span></td>
+                    <td><span th:text="${topic.complexityValue}"> Complexity </span></td>
+                    <td>
+                        <a th:href="@{/courses/{courseId}/student/{username}(username = ${user.email}, courseId = ${course.courseId})}">train</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
