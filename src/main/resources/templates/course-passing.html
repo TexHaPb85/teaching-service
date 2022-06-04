@@ -44,7 +44,7 @@
                     <td><span th:text="${topic.hours}"> Hours </span></td>
                     <td><span th:text="${topic.complexityValue}"> Complexity </span></td>
                     <td>
-                        <a th:href="@{/courses/{courseId}/student/{username}(username = ${user.email}, courseId = ${course.courseId})}">train</a>
+                        <a th:href="@{/rest/courses/theory/{theoryId}(theoryId = ${topic.topicId})}">train</a>
                     </td>
                 </tr>
             </tbody>

@@ -2,6 +2,7 @@ package edu.study.teachingmoduleservice.services;
 
 import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
 import edu.study.teachingmoduleservice.repository.TheoryRepository;
+import edu.study.teachingmoduleservice.repository.TopicRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,11 @@ import java.util.NoSuchElementException;
 public class TheoryServiceImpl {
     private static final Logger LOGGER = LoggerFactory.getLogger(TheoryServiceImpl.class);
     private final TheoryRepository theoryRepository;
+    private final TopicRepository topicRepository;
 
-    public TheoryServiceImpl(TheoryRepository theoryRepository) {
+    public TheoryServiceImpl(TheoryRepository theoryRepository, TopicRepository topicRepository) {
         this.theoryRepository = theoryRepository;
+        this.topicRepository = topicRepository;
     }
 
     public List<TheoryMaterial> getAllTheories() {
@@ -32,6 +35,11 @@ public class TheoryServiceImpl {
     public TheoryMaterial getTheoryById(String theoryId){
         return theoryRepository.findById(theoryId).orElseThrow(NoSuchElementException::new);
     }
+
+    public TheoryMaterial getTheoryByTopic(String topicId) {
+        return  topicRepository.findById(topicId).get().getTheoryMaterials().get(0);
+    }
+
 
     public void addTheory(TheoryMaterial theoryMaterial) {
         try {

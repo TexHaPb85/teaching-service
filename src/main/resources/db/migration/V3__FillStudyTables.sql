@@ -13,7 +13,8 @@ values ('data_types_basic',
 'Data Types',
 'Data types are divided into two groups:
 Primitive data types - includes byte, short, int, long, float, double, boolean and char
-Non-primitive data types - such as String, Arrays and Classes (you will learn more about these in a later chapter)',
+Non-primitive data types - such as String, Arrays and Classes (you will learn more about these in a later chapter)
+<iframe width="1213" height="480" src="https://www.youtube.com/embed/Q0gWnC7BGRU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
 0.2,
 'data_types');
 
