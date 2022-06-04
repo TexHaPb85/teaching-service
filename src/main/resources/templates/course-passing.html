@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title th:text="${courseTitle}></title>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card" style="width: 25rem;">
+
+        <div class="card-header text-center bg-info form-group">
+            <h2 th:text="${courseTitle}"></h2>
+            <span th:text="${course.description}"></span>
+        </div>
+
+        <div class="card-body">
+            <div class="form-group">
+                <label>Complexity:</label>
+                <span th:text="${course.complexityValue}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Your phone:</label>
+                <span th:text="${user.phoneNumber}"></span>
+            </div>
+        </div>
+
+        <p><a th:href="@{/courses}">Select new course</a> </p>
+
+        <table border="2px">
+            <thead>
+            <tr>
+                <th> Course Name </th>
+                <th> Description </th>
+                <th> Approximate number of hours</th>
+                <th> Complexity </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${userCourses.empty}">
+                <td colspan="2"> You`re not registered at any course yet...</td>
+            </tr>
+            <tr th:each="course : ${userCourses}">
+                <td><span th:text="${course.courseId}"> Name </span></td>
+                <td><span th:text="${course.description}"> Description </span></td>
+                <td><span th:text="${course.hours}"> Hours </span></td>
+                <td><span th:text="${course.complexityValue}"> Complexity </span></td>
+                <td>
+                    <form th:action="@{/courses/open}" method="post">
+                        <input type="hidden" name="courseId" th:value="${course.courseId}" />
+                        <input type="submit" value="Add" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>

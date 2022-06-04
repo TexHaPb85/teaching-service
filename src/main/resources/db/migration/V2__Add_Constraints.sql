@@ -1,0 +1,11 @@
+alter table account_course_relations add constraint FKlo6jebb8ud1tnyuhyy8nuqgc2 foreign key (course_id) references courses;
+alter table account_course_relations add constraint FKi26jnydxx2dlk4ssga6rkq18c foreign key (user_account_id) references user_accounts;
+alter table account_task_relations add constraint FKqkl1h5sequ09ejo09se35ogg4 foreign key (user_account_id) references user_accounts;
+alter table account_theory_material_relations add constraint FK8v14e8l2tujeglfiyiev8ssgu foreign key (user_account_id) references user_accounts;
+alter table account_task_relations add constraint FK15nhio6gausm7ysjq7hx2et7p foreign key (task_id) references task_materials;
+alter table account_theory_material_relations add constraint FKmvsdw89bn28fh1meb24tlakw9 foreign key (theory_material_id) references theory_materials;
+alter table task_materials add constraint FK4alb4ulkfy9mboiq17vm7m4ex foreign key (paren_topic_id) references topics;
+alter table theory_materials add constraint FKl506lxxphdbfubruhrsfe4oke foreign key (paren_topic_id) references topics;
+alter table topics add constraint FKcr15rhvqfamnjrvihjsbq9fgg foreign key (parent_course_id) references courses;
+alter table user_credentials add constraint FK74ob5e14kvw2l9j0gj1pcj4kg foreign key (account_name) references user_accounts;
+alter table user_roles add constraint FKdctj9d5huodewnsjhv154g23f foreign key (user_email) references user_credentials;

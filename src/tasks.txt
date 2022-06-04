@@ -1,0 +1,3 @@
+Logger -done
+try catch in services - done (Do we need to wrap findAll method into try/catch?)
+git - just need to set up gitignore and push.

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>List of All Courses</title>
+</head>
+<body>
+    <table border="2px">
+        <thead>
+            <tr>
+                <th> Course Name </th>
+                <th> Description </th>
+                <th> Approximate number of hours</th>
+                <th> Complexity </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${allCoursesList.empty}">
+                <td colspan="2"> No Courses Available </td>
+            </tr>
+            <tr th:each="course : ${allCoursesList}">
+                <td><span th:text="${course.courseId}"> Name </span> </td>
+                <td><span th:text="${course.description}"> Description </span></td>
+                <td><span th:text="${course.hours}"> Hours </span></td>
+                <td><span th:text="${course.complexityValue}"> Complexity </span></td>
+                <td >
+                    <form th:action="@{/courses/add}" method="post">
+                        <input type="hidden" name="courseId" th:value="${course.courseId}" />
+                        <input type="submit" value="Add" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
