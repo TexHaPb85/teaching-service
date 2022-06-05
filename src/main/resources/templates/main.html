@@ -4,9 +4,13 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Universal Teacher</title>
+        <link  th:href="@{/css/style.css}"  rel="stylesheet" />
     </head>
     <body>
-        <h1>Welcome!</h1>
-        <p>Click <a th:href="@{/home}">here</a> to enter the home page.</p>
+        <div class="mainContainer">
+            <h1>Welcome to adptive e-learning system</h1>
+            <p>Our system selects tasks according to your knowledges level</p>
+            <p>Click <a th:href="@{/home}">here</a> to enter the home page.</p>
+        </div>
     </body>
 </html>
