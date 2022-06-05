@@ -18,7 +18,7 @@ public class StudyController {
         this.theoryService = theoryService;
     }
 
-    @GetMapping("/rest/courses/theory/{topicId}")
+    @GetMapping("/courses/theory/{topicId}")
     public String homePage(Model model, @AuthenticationPrincipal User user, @PathVariable String topicId) {
         TheoryMaterial theoryById = theoryService.getTheoryByTopic(topicId);
 
