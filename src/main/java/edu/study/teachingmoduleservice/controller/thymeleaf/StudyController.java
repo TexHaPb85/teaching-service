@@ -21,8 +21,8 @@ public class StudyController {
     @GetMapping("/rest/courses/theory/{topicId}")
     public String homePage(Model model, @AuthenticationPrincipal User user, @PathVariable String topicId) {
         TheoryMaterial theoryById = theoryService.getTheoryByTopic(topicId);
-
-        model.addAttribute("theory", theoryById);
+        String html = theoryById.getTextOfTheoryHTML();
+        model.addAttribute("theoryHTML", html);
 
         return "theory";
     }

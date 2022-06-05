@@ -6,6 +6,11 @@
 </head>
 <body>
     <p>Resolve the task. </p>
-    <p th:text="${theory.textOfTheoryHTML}"></p>
+    <div id="mainDiv"></div>
+<script th:inline="javascript">
+    var text = [[${theoryHTML}]];
+    var element = document.getElementById("mainDiv");
+    element.innerHTML = text;
+</script>
 </body>
 </html>
