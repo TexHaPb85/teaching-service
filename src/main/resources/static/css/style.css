@@ -1,3 +1,205 @@
-*{
-    font-size: 50px;
+body{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*MainPage*/
+
+.mainContainer{
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    background:linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg") no-repeat center/cover ;
+
+}
+
+.mainTextCntainer{
+    color: white;
+    padding-top: 70px;
+    padding-left: 200px;
+}
+
+.mainTextCntainer h1{
+    font-size: 2.2em;
+}
+
+.mainTextCntainer p{
+    font-size: 1.3em;
+}
+
+@media screen and (min-width: 1920px){
+
+    .mainTextCntainer{
+        color: white;
+        padding-top: 100px;
+        padding-left: 220px;
+    }
+
+    .mainTextCntainer h1{
+        font-size: 3em;
+    }
+
+    .mainTextCntainer p{
+        font-size: 2em;
+    }
+}
+
+.styledLink{
+    text-decoration: none;
+    padding: 0 3px;
+    color: rgb(199, 146, 66);
+    background-color: rgb(44, 44, 44);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/*LoginPage*/
+
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;;
+}
+
+.formContainer{
+    width: 380px;
+    height: 550px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.589) ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formHeader{
+    margin-bottom: 50px;
+    color: white;
+    background-color: rgb(199, 146, 66);
+    border-radius: 10px 10px 0 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+    font-weight: bold;
+  }
+::-moz-placeholder {
+    color: black;
+    font-weight: bold;
+  }
+
+.loginInput input{
+    margin-top: 20px;
+    width: 250px;
+    height: 30px;
+    font-size: 0.9em;
+    padding-left: 15px;
+    border-radius: 50px;
+    background-color: rgb(221, 221, 221);
+    outline: none;
+    border: none;
+}
+
+.submitBtn{
+    margin-top: 40px;
+    border-radius: 50px;
+    width: 267px;
+    height: 35px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgb(199, 146, 66);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.registrationText{
+    margin-top: 100px;
+    font-size: 0.8em;
+    color: rgb(80, 79, 79);
+}
+
+@media screen and (min-width: 1920px){
+    .registrationText{
+        font-size: 1em;
+    }
+}
+
+
+/*HomePage*/
+
+.homeContainer{
+    width: 65vw;
+    margin-left: 70px;
+    margin-top: 30px;
+    box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.589) ;
+    border-radius: 10px 10px 0 0;
+}
+
+.homeHeader{
+    color: white;
+    background-color: rgb(199, 146, 66);
+    height: 70px;
+    padding-left: 80px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+}
+
+.contactInfoContainer{
+    padding-left: 30px;
+    padding-top: 20px;
+    font-size: 1.2em;
+}
+
+.contactInfoText{
+    margin-top: 10px;
+}
+
+.selectCourseBtn{
+    margin: 25px 0;
+}
+
+.selectCourseBtn a{
+    color: rgb(165, 119, 49);
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.homeTable{
+    width: 100%;
+}
+
+/*CoursePage*/
+
+.courseHeader{
+    color: white;
+    background-color: rgb(199, 146, 66);
+    height: 120px;
+    padding-left: 80px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.5em;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.courseInfoContainer{
+    padding: 20px 0 30px 30px;
+    font-size: 1.2em;
+}
+
+.courseInfoText{
+    padding-top: 10px;
 }
