@@ -36,8 +36,8 @@ public class TheoryServiceImpl {
         return theoryRepository.findById(theoryId).orElseThrow(NoSuchElementException::new);
     }
 
-    public TheoryMaterial getTheoryByTopic(String topicId) {
-        return  topicRepository.findById(topicId).get().getTheoryMaterials().get(0);
+    public TheoryMaterial getTheoryByTopic(String topicId, String userId) {
+        return  topicRepository.findById(topicId).get().getTheoryMaterials().get(1);
     }
 
 

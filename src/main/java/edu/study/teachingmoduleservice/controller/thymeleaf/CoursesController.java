@@ -42,6 +42,7 @@ public class CoursesController {
         model.addAttribute("user", user);
         model.addAttribute("course", course);
         model.addAttribute("relation", accountCourseRelation);
+        model.addAttribute("account", accountCourseRelation.getStudent());
         model.addAttribute("courseTitle", course.getCourseId().replace("_", " "));
         return "course-passing";
     }

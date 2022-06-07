@@ -5,10 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-    <p>Resolve the task. </p>
+    <div class="courseHeader">
+        <h2 th:text="${theory.title}"></h2>
+        <p th:text="${theory.complexityValue}">Complexity: </p>
+    </div>
     <div id="mainDiv"></div>
 <script th:inline="javascript">
-    var text = [[${theoryHTML}]];
+    var text = [[${theory.textOfTheoryHTML}]];
     var element = document.getElementById("mainDiv");
     element.innerHTML = text;
 </script>

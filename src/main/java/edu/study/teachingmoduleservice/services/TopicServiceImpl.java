@@ -29,6 +29,10 @@ public class TopicServiceImpl {
         }
     }
 
+    public Topic getTopicById(String topicId) {
+        return topicRepository.findById(topicId).orElseThrow();
+    }
+
     public void addTopic(Topic topic) {
         try {
             topicRepository.save(topic);
