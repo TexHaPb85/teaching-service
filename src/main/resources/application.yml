@@ -2,10 +2,10 @@ server:
   port: 9001
 spring:
   datasource:
-    url: jdbc:h2:mem:teaching_db_schema
-    driverClassName: org.h2.Driver
-    username: mike
-    password: 1234
+    url: jdbc:postgresql://ec2-34-246-227-219.eu-west-1.compute.amazonaws.com:5432/d8f4dmhe10k88o
+    driverClassName: org.postgresql.Driver
+    username: rdlmjvqqrkvdqi
+    password: 38cef89a0bba42fdbb030d102692994d0816325d4fd60c26b7041e13ab83d3d8
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
