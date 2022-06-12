@@ -10,9 +10,10 @@
 </head>
 <body>
     <div class="homeContainer">
-        <div class="courseHeader">
+        <div class="homeHeader">
             <h2 th:text="${topic.topicId}"></h2>
             <p th:text="${topic.description}"></p>
+            <div>Your rate: <span th:text="${account.rateValue}"></span></div>
         </div>
         <div class="courseInfoContainer">
             <div class="courseInfoText">Topic complexity: <span th:text="${topic.complexityValue}"></span></div>
