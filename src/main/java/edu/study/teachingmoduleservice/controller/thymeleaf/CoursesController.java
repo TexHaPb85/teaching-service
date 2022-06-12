@@ -24,8 +24,9 @@ public class CoursesController {
     }
 
     @GetMapping("/courses")
-    public String coursesPage(Model model) {
+    public String coursesPage(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("allCoursesList", courseService.getAllCourses());
+        model.addAttribute("account", user.getAccount());
         return "courses";
     }
 

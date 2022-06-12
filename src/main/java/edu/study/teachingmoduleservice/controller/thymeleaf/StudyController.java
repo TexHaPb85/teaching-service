@@ -58,13 +58,17 @@ public class StudyController {
         return "task-passing";
     }
 
-    @PostMapping("/courses/topic/{topicId}/task-passing")
+    @PostMapping("/courses/topic/{topicId}/task-passing/{taskId}")
     public String answerTasks(
+            Model model,
+            @AuthenticationPrincipal User user,
             @ModelAttribute("answer") AnswerDto answer,
-            @ModelAttribute("task") TaskMaterial task,
-            @PathVariable String topicId) {
+            @PathVariable String topicId,
+            @PathVariable String taskId) {
 
-        System.out.println(answer);
+        TaskMaterial task = taskService.getTaskById(taskId);
+        Float aFloat = taskService.processAnswer(answer.getAnswerStr(), task, user);
+        System.out.println(aFloat);
         return "redirect:/courses/topic/" + topicId;
     }
 }

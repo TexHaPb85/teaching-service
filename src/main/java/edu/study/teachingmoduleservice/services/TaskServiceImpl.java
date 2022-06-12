@@ -1,11 +1,12 @@
 package edu.study.teachingmoduleservice.services;
 
+import edu.study.teachingmoduleservice.domain.relation.AccountTaskRelation;
 import edu.study.teachingmoduleservice.domain.study.TaskMaterial;
+import edu.study.teachingmoduleservice.domain.study.TaskType;
 import edu.study.teachingmoduleservice.domain.user.User;
 import edu.study.teachingmoduleservice.domain.user.UserAccount;
 import edu.study.teachingmoduleservice.repository.AccountTaskRelationRepository;
 import edu.study.teachingmoduleservice.repository.TaskRepository;
-import edu.study.teachingmoduleservice.repository.UserAccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -28,18 +30,21 @@ import java.util.stream.Collectors;
 public class TaskServiceImpl {
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskServiceImpl.class);
     private final TaskRepository taskRepository;
-    private final UserAccountRepository userAccountRepository;
+
+    private final UserServiceImpl userService;
     private final AccountTaskRelationRepository accountTaskRelationRepository;
 
     public TaskServiceImpl(
             TaskRepository taskRepository,
-            UserAccountRepository userAccountRepository,
-            AccountTaskRelationRepository accountTaskRelationRepository) {
+            UserServiceImpl userService, AccountTaskRelationRepository accountTaskRelationRepository) {
         this.taskRepository = taskRepository;
-        this.userAccountRepository = userAccountRepository;
+        this.userService = userService;
         this.accountTaskRelationRepository = accountTaskRelationRepository;
     }
 
+    public TaskMaterial getTaskById (String taskId) {
+        return taskRepository.getById(taskId);
+    }
     public List<TaskMaterial> getTasksByTopicID(String topicID) {
         try {
             LOGGER.info("getAllTasks method returns all tasks");
@@ -77,17 +82,20 @@ public class TaskServiceImpl {
                 .count();
 
         Float markForTheTask = 0f;
-        switch (task.getTaskType()) {
+        TaskType taskType = task.getTaskType();
+        switch (taskType) {
             case QUESTION: {
                 if (answer.equals(task.getAnswer())) {
                     markForTheTask = 1.0f;
                 }
+                break;
             }
             case WRITE_CODE: {
                 String codeOutput = compileJavaCode(answer);
                 if (codeOutput.equals(answer)) {
                     markForTheTask = 1.0f;
                 }
+                break;
             }
         }
 
@@ -96,7 +104,16 @@ public class TaskServiceImpl {
                                           / (numberOfExecutedTasks +1);
         UserAccount updatedAcc = user.getAccount();
         updatedAcc.setRateValue(newRateValue);
-        userAccountRepository.save(updatedAcc);
+        user.setAccount(updatedAcc);
+        //userService.saveUser(user); TODO
+
+        AccountTaskRelation accountTaskRelation = new AccountTaskRelation();
+        accountTaskRelation.setTask(task);
+        accountTaskRelation.setRelationId(task.getTaskId() + "_" + user.getAccount().getUserName());
+        accountTaskRelation.setGradeOfTaskComplexity(0f); //TODO
+        accountTaskRelation.setDateOfPassing(LocalDateTime.now());
+        accountTaskRelation.setGradeOfStudent(markForTheTask);
+        accountTaskRelationRepository.save(accountTaskRelation);
 
         return markForTheTask;
     }

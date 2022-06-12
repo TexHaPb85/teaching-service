@@ -32,7 +32,36 @@ public class TaskMaterial implements Serializable {
     private Topic parentTopic;
 
     @OneToMany(mappedBy = "task")
+    @JsonIgnore
     private List<AccountTaskRelation> studentRelationsList;
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setComplexityValue(Float complexityValue) {
+        this.complexityValue = complexityValue;
+    }
+
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
+    }
+
+    public void setParentTopic(Topic parentTopic) {
+        this.parentTopic = parentTopic;
+    }
+
+    public void setStudentRelationsList(List<AccountTaskRelation> studentRelationsList) {
+        this.studentRelationsList = studentRelationsList;
+    }
 
     @Override
     public String toString() {

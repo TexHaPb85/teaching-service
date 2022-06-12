@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class AnswerDto {
     private String answerStr;
+    private String taskId;
 
     @Override
     public String toString() {
