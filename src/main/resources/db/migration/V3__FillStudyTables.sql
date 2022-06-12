@@ -59,9 +59,13 @@ Statement 3 is executed (every time) after the code block has been executed.',
 0.2,
 'loops');
 
-insert into task_materials (task_id, question, answer, complexity_value, paren_topic_id)
+insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
 values ('data_types_basic',
-'What is printed to console? <br> int a = 10; <br> a++; <br>System.out,println(a);',
+'What will be printed to console?
+int a = 10;
+System.out.println(++a);
+',
 '11',
+
 0.1,
 'data_types');

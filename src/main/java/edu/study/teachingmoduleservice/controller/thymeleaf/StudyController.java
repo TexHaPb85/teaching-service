@@ -4,6 +4,7 @@ import edu.study.teachingmoduleservice.domain.study.TaskMaterial;
 import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
 import edu.study.teachingmoduleservice.domain.study.Topic;
 import edu.study.teachingmoduleservice.domain.user.User;
+import edu.study.teachingmoduleservice.dto.AnswerDto;
 import edu.study.teachingmoduleservice.services.TaskServiceImpl;
 import edu.study.teachingmoduleservice.services.TheoryServiceImpl;
 import edu.study.teachingmoduleservice.services.TopicServiceImpl;
@@ -11,7 +12,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class StudyController {
@@ -46,10 +49,22 @@ public class StudyController {
 
     @GetMapping("/courses/topic/{topicId}/task-passing")
     public String openTaskOfTopic(Model model, @AuthenticationPrincipal User user, @PathVariable String topicId) {
-        TaskMaterial task = taskService.getTasksByTopicID(topicId).get(0);
+        TaskMaterial task = taskService.findTopicScopedTaskForUser(topicId, user.getAccount());
         model.addAttribute("task", task);
         model.addAttribute("account", user.getAccount());
+        model.addAttribute("answer", new AnswerDto());
+        model.addAttribute("topicId", topicId);
 
         return "task-passing";
+    }
+
+    @PostMapping("/courses/topic/{topicId}/task-passing")
+    public String answerTasks(
+            @ModelAttribute("answer") AnswerDto answer,
+            @ModelAttribute("task") TaskMaterial task,
+            @PathVariable String topicId) {
+
+        System.out.println(answer);
+        return "redirect:/courses/topic/" + topicId;
     }
 }

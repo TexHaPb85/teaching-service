@@ -11,6 +11,12 @@
 
 <p th:text="${task.question}">Question: </p>
 
-<!--here should be input area for answer-->
+<form th:action="@{'/courses/topic/' + ${topicId} + '/task-passing'}" method="post" th:object="${answer}">
+    <div class="answerInput">
+        <textarea type="text" placeholder="Answer" th:field="*{answerStr}"></textarea>
+    </div>
+    <button type="submit" class="submitBtn">Answer</button>
+</form>
+
 </body>
 </html>

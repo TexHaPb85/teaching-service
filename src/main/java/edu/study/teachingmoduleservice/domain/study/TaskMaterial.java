@@ -23,6 +23,8 @@ public class TaskMaterial implements Serializable {
     private String question;
     private String answer;
     private Float complexityValue;
+
+    private TaskType taskType;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "paren_topic_id")
