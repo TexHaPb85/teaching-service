@@ -24,6 +24,7 @@ public class TaskMaterial implements Serializable {
     private String answer;
     private Float complexityValue;
 
+    @Enumerated(EnumType.STRING)
     private TaskType taskType;
     @ManyToOne
     @JsonIgnore

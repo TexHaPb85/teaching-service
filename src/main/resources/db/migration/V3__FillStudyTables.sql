@@ -66,6 +66,6 @@ int a = 10;
 System.out.println(++a);
 ',
 '11',
-
+'QUESTION',
 0.1,
 'data_types');
