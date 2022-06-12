@@ -21,9 +21,9 @@ insert into theory_materials (theory_id, title, text_of_theoryhtml, complexity_v
 values ('data_types_middle',
 'Data Types',
 '
-Data types are divided into two groups:
+<p>Data types are divided into two groups:
 Primitive data types - includes byte, short, int, long, float, double, boolean and char
-Non-primitive data types - such as String, Arrays and Classes (you will learn more about these in a later chapter)
+Non-primitive data types - such as String, Arrays and Classes (you will learn more about these in a later chapter)</p>
 <img src="https://static.javatpoint.com/images/java-data-types.png">
 <iframe width="1213" height="480" src="https://www.youtube.com/embed/qUXbJziVs_o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
 0.7,

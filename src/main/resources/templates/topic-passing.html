@@ -13,10 +13,11 @@
         <div class="courseHeader">
             <h2 th:text="${topic.topicId}"></h2>
             <p th:text="${topic.description}"></p>
-            <p th:text="${topic.complexityValue}">Complexity:</p>
-            <p th:text="${topic.hours}">Number of hours: </p>
         </div>
-
+        <div class="courseInfoContainer">
+            <div class="courseInfoText">Topic complexity: <span th:text="${topic.complexityValue}"></span></div>
+            <div class="courseInfoText">Number of hours: <span th:text="${topic.hours}"></span></div>
+        </div>
         <table class="homeTable" border="2px">
             <thead>
                 <tr>
