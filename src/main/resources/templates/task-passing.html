@@ -11,8 +11,9 @@
 </head>
 <body>
     <div class="homeContainer">
-        <div class="courseHeader">
+        <div class="homeHeader">
             <h2 th:text="${task.taskId}"></h2>
+            <div>Your rate: <span th:text="${account.rateValue}"></span></div>
         </div>
         <p class="question">Question: <span th:text="${task.question}"></span></p>
         <form class="answerContainer" th:action="@{'/courses/topic/' + ${topicId} + '/task-passing/' + ${task.taskId}}" method="post" th:object="${answer}">
