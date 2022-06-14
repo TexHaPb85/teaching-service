@@ -12,9 +12,13 @@
 <body>
 <div class="homeContainer">
     <div class="homeHeader">
-        <h3>Hello, </h3>
-        <h3 th:text="${account.userName}"></h3>
-        <div>Your rate: <span th:text="${account.rateValue}"></span></div>
+        <div class="homeHeaderInfo">
+            <h3>Hello, </h3>
+            <h3 th:text="${account.userName}"></h3>
+            <div>Your rate: <span th:text="${account.rateValue}"></span></div>
+        </div>
+        <a th:href="@{/logout}"  class="styledLink btnMargin">log out</a>
+       
     </div>
     <div class="contactInfoContainer">
         <div class="contactInfoText">

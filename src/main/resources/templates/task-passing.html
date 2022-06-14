@@ -14,12 +14,22 @@
         <div class="homeHeader">
             <h2 th:text="${task.taskId}"></h2>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
+            <a th:href="@{/logout}"  class="styledLink btnMargin">log out</a>
         </div>
-        <p class="question">Question: <span th:text="${task.question}"></span></p>
+        <p class="question">Question:</p>
+        <div id="mainDiv">
+            
+        </div>
         <form class="answerContainer" th:action="@{'/courses/topic/' + ${topicId} + '/task-passing/' + ${task.taskId}}" method="post" th:object="${answer}">
             <textarea rows="5" cols="50" type="text"  th:field="*{answerStr}"></textarea>
             <button type="submit"  class="btn btn-success">Answer</button>
         </form>
     </div>
+    <script th:inline="javascript">
+        var text = [[${task.question}]];
+        var element = document.getElementById("mainDiv");
+    
+        element.innerHTML = text;
+    </script>
 </body>
 </html>

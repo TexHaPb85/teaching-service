@@ -151,10 +151,14 @@ body{
     border-radius: 10px 10px 0 0;
     font-size: 1.5em;
     display: flex;
+    justify-content: space-between;
+}
+
+.homeHeaderInfo{
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 .contactInfoContainer{
     padding-left: 30px;
     padding-top: 20px;
@@ -226,10 +230,37 @@ body{
 }
 
 .question{
-    margin:10px;
+    margin:10px 47px;
 }
 
 textarea{
 resize: both
 }
 
+.btnMargin{
+ margin: 0 40px;
+ height: fit-content;
+}
+
+.modalRate label, .modalRate textarea{
+    width: 350px;
+}
+.modalRate {
+    display: none;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    z-index: 999;
+    background-color: #c79242e6;
+    width: 40vw;
+    height: 280px;
+    padding-top: 10px;
+}
+.align-center{
+    align-items: center;
+}
+.visible {
+    display: flex;
+}
