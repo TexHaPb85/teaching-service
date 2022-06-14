@@ -6,6 +6,7 @@ import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
 import edu.study.teachingmoduleservice.domain.study.Topic;
 import edu.study.teachingmoduleservice.domain.user.User;
 import edu.study.teachingmoduleservice.dto.AnswerDto;
+import edu.study.teachingmoduleservice.dto.FeedbackDto;
 import edu.study.teachingmoduleservice.services.TaskServiceImpl;
 import edu.study.teachingmoduleservice.services.TheoryServiceImpl;
 import edu.study.teachingmoduleservice.services.TopicServiceImpl;
@@ -44,7 +45,8 @@ public class StudyController {
         TheoryMaterial theoryById = theoryService.getTheoryByTopic(topicId, user.getAccount());
         model.addAttribute("theory", theoryById);
         model.addAttribute("account", user.getAccount());
-
+        model.addAttribute("feedback", new FeedbackDto());
+        
         return "theory-passing";
     }
 

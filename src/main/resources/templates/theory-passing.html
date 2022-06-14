@@ -16,11 +16,29 @@
             <p>Complexity: <span th:text="${theory.complexityValue}"></span></p>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
         </div>
-        <div id="mainDiv"></div>
+        <div id="mainDiv">
+          
+        </div>
+        <button class="passedButton" id="btnPass">
+            Я все зрозумів
+        </button>
+        <div class="modalRate" id="modalRate">
+            <form class="answerContainer" th:action="@{'/courses/task-feedback/' + ${theory.theoryId} }" method="post" th:object="${feedback}">
+                <textarea rows="5" cols="50" type="text"  ></textarea>
+                <input type="range" name="" value="0.0" id="" min="0.0" max="1.0" th:field="*{gradeOfComplexity}">
+                <button type="submit"  class="btn btn-success">Answer</button>
+            </form>
+            оцініть наскільки зрозуміло
+            "повзунок"
+        </div>
     </div>
 <script th:inline="javascript">
     var text = [[${theory.textOfTheoryHTML}]];
     var element = document.getElementById("mainDiv");
+    let passBtn = document.getElementById("btnPass");
+    let modal = document.getElementById("modalRate");
+
+    passBtn.addEventListener("click", ()=> modal.classList.toggle("visible") )
     element.innerHTML = text;
 </script>
 </body>
