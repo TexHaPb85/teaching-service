@@ -17,7 +17,7 @@
         </div>
         <p class="question">Question: <span th:text="${task.question}"></span></p>
         <form class="answerContainer" th:action="@{'/courses/topic/' + ${topicId} + '/task-passing/' + ${task.taskId}}" method="post" th:object="${answer}">
-            <textarea type="text"  th:field="*{answerStr}"></textarea>
+            <textarea rows="5" cols="50" type="text"  th:field="*{answerStr}"></textarea>
             <button type="submit"  class="btn btn-success">Answer</button>
         </form>
     </div>

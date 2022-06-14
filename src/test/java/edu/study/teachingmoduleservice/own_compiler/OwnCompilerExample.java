@@ -19,7 +19,8 @@ public class OwnCompilerExample {
                         "public Test() { " +
                         "for (int i = 0; i < 10; i++) {\n" +
                         "  System.out.println(i);\n" +
-                        "} } " +
+                        "} " +
+                        "} " +
                         "}";
 
 

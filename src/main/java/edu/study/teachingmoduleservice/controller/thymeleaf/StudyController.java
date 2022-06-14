@@ -1,6 +1,7 @@
 package edu.study.teachingmoduleservice.controller.thymeleaf;
 
 import edu.study.teachingmoduleservice.domain.study.TaskMaterial;
+import edu.study.teachingmoduleservice.domain.study.TaskType;
 import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
 import edu.study.teachingmoduleservice.domain.study.Topic;
 import edu.study.teachingmoduleservice.domain.user.User;
@@ -40,7 +41,7 @@ public class StudyController {
 
     @GetMapping("/courses/topic/{topicId}/theory-passing")
     public String openTheoryOfTopic(Model model, @AuthenticationPrincipal User user, @PathVariable String topicId) {
-        TheoryMaterial theoryById = theoryService.getTheoryByTopic(topicId, user.getEmail());
+        TheoryMaterial theoryById = theoryService.getTheoryByTopic(topicId, user.getAccount());
         model.addAttribute("theory", theoryById);
         model.addAttribute("account", user.getAccount());
 
@@ -52,7 +53,11 @@ public class StudyController {
         TaskMaterial task = taskService.findTopicScopedTaskForUser(topicId, user.getAccount());
         model.addAttribute("task", task);
         model.addAttribute("account", user.getAccount());
-        model.addAttribute("answer", new AnswerDto());
+        AnswerDto answerDto = new AnswerDto();
+        if(task.getTaskType().equals(TaskType.WRITE_CODE)) {
+            answerDto.setAnswerStr(task.getQuestion().split("[{}]")[1]);
+        }
+        model.addAttribute("answer", answerDto);
         model.addAttribute("topicId", topicId);
 
         return "task-passing";

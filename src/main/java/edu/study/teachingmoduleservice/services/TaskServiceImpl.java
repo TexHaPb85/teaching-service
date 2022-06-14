@@ -92,7 +92,7 @@ public class TaskServiceImpl {
             }
             case WRITE_CODE: {
                 String codeOutput = compileJavaCode(answer);
-                if (codeOutput.equals(answer)) {
+                if (codeOutput.equals(answer.split("[}]")[1])) {
                     markForTheTask = 1.0f;
                 }
                 break;
@@ -118,8 +118,22 @@ public class TaskServiceImpl {
         return markForTheTask;
     }
 
+    public void graduateTaskComplexity(Float grade, TaskMaterial taskMaterial, User user) {
+
+    }
+
     private String compileJavaCode(String code) {
         // Save source in .java file.
+        code =  "package test; " +
+                "public class Test {" +
+                    "public String test() { " +
+                        code +
+                    "} " +
+                "    @Override" +
+                "    public String toString() {" +
+                "        return test();" +
+                "    }" +
+                "}";
         File root = new File("/java"); // On Windows running on C:\, this is C:\java.
         File sourceFile = new File(root, "test/Test.java");
         sourceFile.getParentFile().mkdirs();
