@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FeedbackDto {
-    private String gradeOfComplexity;
+    private Float gradeOfComplexity;
     private String gradeId;
 
     @Override

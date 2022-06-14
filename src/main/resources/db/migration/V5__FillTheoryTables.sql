@@ -1,4 +1,3 @@
-
 insert into theory_materials (theory_id, title, text_of_theoryhtml, complexity_value, paren_topic_id)
 values ('data_types_basic',
         'Data Types',

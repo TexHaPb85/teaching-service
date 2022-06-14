@@ -25,7 +25,7 @@
         <div class="modalRate" id="modalRate">
             <form class="answerContainer" th:action="@{'/courses/task-feedback/' + ${theory.theoryId} }" method="post" th:object="${feedback}">
                 <textarea rows="5" cols="50" type="text"  ></textarea>
-                <input type="range" name="" value="0.0" id="" min="0.0" max="1.0" th:field="*{gradeOfComplexity}">
+                <input type="range" min="0.0" max="1.0" th:field="*{gradeOfComplexity}">
                 <button type="submit"  class="btn btn-success">Answer</button>
             </form>
             оцініть наскільки зрозуміло
