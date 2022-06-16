@@ -2,6 +2,7 @@ package edu.study.teachingmoduleservice.services;
 
 import edu.study.teachingmoduleservice.domain.study.TaskMaterial;
 import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
+import edu.study.teachingmoduleservice.domain.user.User;
 import edu.study.teachingmoduleservice.domain.user.UserAccount;
 import edu.study.teachingmoduleservice.repository.AccountTaskRelationRepository;
 import edu.study.teachingmoduleservice.repository.TheoryRepository;
@@ -38,6 +39,18 @@ public class TheoryServiceImpl {
 
     public TheoryMaterial getTheoryById(String theoryId){
         return theoryRepository.findById(theoryId).orElseThrow(NoSuchElementException::new);
+    }
+
+    public void graduateTheoryComplexity(Float grade, String theoryId, User user) {
+        TheoryMaterial theoryMaterial = theoryRepository.findById(theoryId).get();
+        int numberOfGrades = 17;
+        Float oldComplexity = theoryMaterial.getComplexityValue();
+        Float complexitySetByAuthor = theoryMaterial.getDefaultComplexityValue();
+        Float abs = Math.abs(user.getAccount().getRateValue()-oldComplexity);
+        Float newComplexity = complexitySetByAuthor + oldComplexity * numberOfGrades * abs + grade
+                                                 / numberOfGrades * abs + 2;
+
+        theoryMaterial.setComplexityValue(newComplexity);
     }
 
     public TheoryMaterial getTheoryByTopic(String topicId, UserAccount userAccount) {

@@ -9,13 +9,15 @@ import lombok.Setter;
 @Setter
 public class FeedbackDto {
     private Float gradeOfComplexity;
-    private String gradeId;
+    private String comment;
+    private String taskOfTheoryId;
 
     @Override
     public String toString() {
         return "FeedbackDto{" +
                 "gradeOfComplexity=" + gradeOfComplexity +
-                ", gradeId='" + gradeId + '\'' +
+                ", comment='" + comment + '\'' +
+                ", taskOfTheoryId='" + taskOfTheoryId + '\'' +
                 '}';
     }
 }

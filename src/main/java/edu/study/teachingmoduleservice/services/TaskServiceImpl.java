@@ -118,7 +118,7 @@ public class TaskServiceImpl {
         return markForTheTask;
     }
 
-    public void graduateTaskComplexity(Float grade, TaskMaterial taskMaterial, User user) {
+    public void graduateTaskComplexity(Float grade, String taskId, User user) {
 
     }
 
