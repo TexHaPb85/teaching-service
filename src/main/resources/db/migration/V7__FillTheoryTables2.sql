@@ -1,22 +1,13 @@
 insert into theory_materials (theory_id, title, text_of_theoryhtml, complexity_value, default_complexity_value, paren_topic_id)
-values ('data_types_basic',
-        'Data Types Basic',
+values ('conditions_basic',
+        'Сonditions Basic',
         '
-        <p>int for integers</p>
-        <p>example: int i = 12; </p>
-        <p>double for fractional numbers:</p>' ||
-        '<p>example: double d = 12.2; </p>
-        <p>String for strings:</p> ' ||
-        '<p>example: String s = "example string"; </p>' ||
-        '<p>Any primitive type can be converter to String by using of String.value.of()</p>' ||
-        '<p>example: String sConverted = String.valueOf(12.2); //sConverted == "12.2" </p>
-        <p>boolean for expression that returns true/false:</p>' ||
-        '<p>example: boolean b = 5 > 5; // true </p>
+        <p></p>
         <br>
         <iframe width="1213" height="480" src="https://www.youtube.com/embed/QnkevG92lqk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
         0.2,
         0.2,
-        'data_types');
+        'conditions');
 
 insert into theory_materials (theory_id, title, text_of_theoryhtml, complexity_value, default_complexity_value, paren_topic_id)
 values ('data_types_middle',

@@ -1,60 +1,62 @@
 insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
-values ('data_types_basic1',
-        '<p>What will be printed to console?</p>
-        <p>int a = 10;</p>
-        <p>System.out.println(++a);</p>
+values ('conditions_basic1',
+        '<p>What will be printed to console?
+        int a = 12;
+        if (a % 2 == 0) {
+            System.out.println(a + " is even");
+        } else {
+            System.out.println(a + " is not even");
+        }
+        </p>
         ',
-        '11',
+        'a is even',
         'QUESTION',
         0.1,
-        'data_types');
+        'conditions');
 
 insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
-values ('data_types_basic2',
-        '<p>Write code, that will increase integer variable "a" by 1 and return it.</p>
-         <p>Fill the following code:</p>' ||
+values ('conditions_basic2',
+        '<p>Write code, that check if variable "a" has even value.</p>
+         <p>Fill the following code, return true if "a" is even:</p>' ||
         '{
-int a = 0;
+int a = 12;
 // write your code here
-return String.valueOf(a);
-}1;
+//return ;
+};
         ',
-        '1',
+        'true',
         'WRITE_CODE',
         0.3,
-        'data_types');
+        'conditions');
 
 insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
-values ('data_types_middle1',
+values ('conditions_middle1',
         '<p>What will be printed to console?
-        int a = 10;
-        int b = a--;
-        int c = --b;
-        b*=5;
-        System.out.println("a=" + (++a) + ", b=" + b + ", c=" + c);</p>
+        int a = 5;
+        switch (a) {
+            case 5: {System.out.println("a=5");}
+            default: {System.out.println("a is not 5");}
+        }</p>
         ',
-        'a=10, b=45, c=9',
+        'a=5a is not 5',
         'QUESTION',
         0.4,
-        'data_types');
+        'conditions');
 
 insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
-values ('data_types_middle2',
+values ('conditions_middle2',
         '<p>What will be printed to console?
         int a = 10;
-        int b = --a;
-        int c = --b;
-        c%=--a;
-        System.out.println("a=" + a + ", b=" + b + ", c=" + c);</p>
+        System.out.println(a > 5 ? "more" : "less");</p>
         ',
-        'a=8, b=8, c=0',
+        'more',
         'QUESTION',
         0.4,
-        'data_types');
+        'conditions');
 
 insert into task_materials (task_id, question, answer, task_type, complexity_value, paren_topic_id)
-values ('data_types_middle3',
-        '<p>Write code, that will increase integer variable "a" by 15 and return it.</p>
+values ('conditions_middle3',
+        '<p>Write code, that will check whether string "str" contains.</p>
          <p>Fill the following code:</p>' ||
         '{
 int a = 0;
@@ -65,4 +67,4 @@ return String.valueOf(a);
         '15',
         'WRITE_CODE',
         0.4,
-        'data_types');
+        'conditions');
