@@ -213,6 +213,11 @@ body{
     align-items: center;
 }
 
+#mainDiv pre{
+ font-size:1em;
+ font-family: sans-serif;
+}
+
 #mainDiv p{
     width: 60vw;
     margin-top: 10px;
