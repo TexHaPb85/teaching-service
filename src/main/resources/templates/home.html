@@ -17,7 +17,7 @@
             <h3 th:text="${account.userName}"></h3>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
         </div>
-        <a th:href="@{/logout}"  class="styledLink btnMargin">log out</a>
+        <a th:href="@{/logout}"  class="btn btn-danger btnMargin">log out</a>
        
     </div>
     <div class="contactInfoContainer">
@@ -52,7 +52,7 @@
             <td><span th:text="${course.hours}"> Hours </span></td>
             <td><span th:text="${course.complexityValue}"> Complexity </span></td>
             <td>
-                <a class="styledLink" th:href="@{/courses/{courseId}/student/{username}(username = ${user.email}, courseId = ${course.courseId})}">here</a>
+                <a class="btn btn-warning" th:href="@{/courses/{courseId}/student/{username}(username = ${user.email}, courseId = ${course.courseId})}">here</a>
             </td>
         </tr>
         </tbody>

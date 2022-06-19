@@ -15,7 +15,7 @@
             <h2 th:text="${theory.title}"></h2>
             <p>Complexity: <span th:text="${theory.complexityValue}"></span></p>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
-            <a th:href="@{/logout}"  class="styledLink btnMargin">log out</a>
+            <a th:href="@{/logout}"  class="btn btn-danger btnMargin">log out</a>
         </div>
         <div id="mainDiv">
           
@@ -29,7 +29,11 @@
                     Short course review optional
                     <textarea rows="5" cols="50" type="text" th:field="*{comment}"></textarea>
                 </label>
-                <input type="range" min="0.0" max="1.0"  th:field="*{gradeOfComplexity}" step="0.1" >
+                <div class="rateContainer">
+                    <span>Easy</span>
+                    <input type="range" min="0.0" max="1.0"  th:field="*{gradeOfComplexity}" step="0.1" >
+                    <span>Hard</span>
+                </div>
                 <button type="submit"  class="btn btn-success">Answer</button>
             </form>
         </div>

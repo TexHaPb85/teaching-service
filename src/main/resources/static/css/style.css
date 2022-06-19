@@ -269,3 +269,7 @@ resize: both
 .visible {
     display: flex;
 }
+
+.rateContainer{
+display:flex;
+}

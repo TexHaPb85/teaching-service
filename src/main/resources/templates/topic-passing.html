@@ -14,7 +14,7 @@
             <h2 th:text="${topic.topicId}"></h2>
             <p th:text="${topic.description}"></p>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
-            <a th:href="@{/logout}"  class="styledLink btnMargin">log out</a>
+            <a th:href="@{/logout}"  class="btn btn-danger btnMargin">log out</a>
         </div>
         <div class="courseInfoContainer">
             <div class="courseInfoText">Topic complexity: <span th:text="${topic.complexityValue}"></span></div>
@@ -34,7 +34,7 @@
                 </tr>
             </tbody>
         </table>
-        <p><a class="styledLink" th:href="@{'/courses/topic/' + ${topic.topicId} + '/theory-passing'}">Learn theory</a></p>
+        <p><a class="btn btn-warning" th:href="@{'/courses/topic/' + ${topic.topicId} + '/theory-passing'}">Learn theory</a></p>
 
         <table class="homeTable" border="2px">
             <thead>
@@ -50,7 +50,7 @@
                 </tr>
             </tbody>
         </table>
-        <p><a class="styledLink" th:href="@{'/courses/topic/' + ${topic.topicId} + '/task-passing'}">Execute tasks</a></p>
+        <p><a class="btn btn-warning" th:href="@{'/courses/topic/' + ${topic.topicId} + '/task-passing'}">Execute tasks</a></p>
     </div>
 </body>
 </html>
