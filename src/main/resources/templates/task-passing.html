@@ -22,14 +22,27 @@
         </div>
         <form class="answerContainer" th:action="@{'/courses/topic/' + ${topicId} + '/task-passing/' + ${task.taskId}}" method="post" th:object="${answer}">
             <textarea rows="5" cols="50" type="text"  th:field="*{answerStr}"></textarea>
-            <button type="submit"  class="btn btn-success">Answer</button>
+            <button type="submit" id="btnPass"  class="btn btn-success">Answer</button>
         </form>
+        <div class="modalRate" id="modalRate">
+            <form class="answerContainer align-center" th:action="@{'/courses/task-feedback/' + ${task.taskId}}" method="post" th:object="${feedback}">
+                <label>
+                    Short task review
+                    <textarea rows="5" cols="50" type="text" th:field="*{comment}"></textarea>
+                </label>
+                <input type="range" min="0.0" max="1.0"  th:field="*{gradeOfComplexity}" step="0.1" >
+                <button type="submit"  class="btn btn-success">Answer</button>
+            </form>
+        </div>
     </div>
     <script th:inline="javascript">
         var text = [[${task.question}]];
         var element = document.getElementById("mainDiv");
-    
         element.innerHTML = text;
+
+        let passBtn = document.getElementById("btnPass");
+        let modal = document.getElementById("modalRate");
+        passBtn.addEventListener("click", ()=> modal.classList.toggle("visible") )
     </script>
 </body>
 </html>
