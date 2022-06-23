@@ -23,6 +23,8 @@ public class TheoryMaterial implements Serializable {
     private String title;
     private String textOfTheoryHTML;
     private Float complexityValue;
+    private Float defaultComplexityValue;
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "paren_topic_id")
@@ -34,10 +36,7 @@ public class TheoryMaterial implements Serializable {
     @Override
     public String toString() {
         return "TheoryMaterial{" +
-                "theoryId='" + theoryId + '\'' +
-                ", title='" + title + '\'' +
-                ", textOfTheoryHTML='" + textOfTheoryHTML + '\'' +
-                ", complexityValue=" + complexityValue +
+                "theoryId=" + theoryId +
                 '}';
     }
 }

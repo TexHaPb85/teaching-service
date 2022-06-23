@@ -26,7 +26,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("user") User user, Model model) {
+    public String addUser(@ModelAttribute("user") User user) {
         // TODO
 //        User userFromDb = userService.findByEmail(user.getEmail());
 //

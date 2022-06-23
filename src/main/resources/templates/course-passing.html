@@ -10,10 +10,11 @@
 </head>
 <body>
     <div class="homeContainer">
-        <div class="courseHeader">
+        <div class="homeHeader">
             <h2 th:text="${courseTitle}"></h2>
             <p th:text="${course.description}"></p>
-
+            <div>Your rate: <span th:text="${account.rateValue}"></span></div>
+            <a th:href="@{/logout}"  class="btn btn-danger btnMargin">log out</a>
         </div>
         <div class="courseInfoContainer">
             <div class="courseInfoText">
@@ -24,11 +25,6 @@
                 <label>Complexity:</label>
                 <span th:text="${course.complexityValue}"></span>
             </div>
-            <div class="courseInfoText">
-                <label>Your rate:</label>
-                <span th:text="${account.rateValue}"></span>
-            </div>
-
         </div>
         <table class="homeTable" border="2px">
             <thead>
@@ -46,7 +42,7 @@
                     <td><span th:text="${topic.hours}"> Hours </span></td>
                     <td><span th:text="${topic.complexityValue}"> Complexity </span></td>
                     <td>
-                        <a class="styledLink" th:href="@{/courses/topic/{topicId}(topicId = ${topic.topicId})}">open</a>
+                        <a class="btn btn-warning" th:href="@{/courses/topic/{topicId}(topicId = ${topic.topicId})}">open</a>
                     </td>
                 </tr>
             </tbody>

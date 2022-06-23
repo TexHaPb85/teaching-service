@@ -141,19 +141,24 @@ body{
     margin-top: 30px;
     box-shadow: 0px 5px 10px rgba(80, 80, 80, 0.589) ;
     border-radius: 10px 10px 0 0;
+    margin: auto;
 }
 
 .homeHeader{
     color: white;
     background-color: rgb(199, 146, 66);
-    height: 70px;
-    padding-left: 80px;
+    padding:20px 0 20px 80px;
     border-radius: 10px 10px 0 0;
     font-size: 1.5em;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 }
 
+.homeHeaderInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .contactInfoContainer{
     padding-left: 30px;
     padding-top: 20px;
@@ -183,18 +188,6 @@ body{
 
 /*CoursePage*/
 
-.courseHeader{
-    color: white;
-    background-color: rgb(199, 146, 66);
-    height: 120px;
-    padding-left: 80px;
-    border-radius: 10px 10px 0 0;
-    font-size: 1.5em;
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-}
-
 .courseInfoContainer{
     padding: 20px 0 30px 30px;
     font-size: 1.2em;
@@ -202,4 +195,87 @@ body{
 
 .courseInfoText{
     padding-top: 10px;
+}
+
+.homeContainer iframe{
+    width: 60vw;
+    margin-bottom: 30px;
+}
+
+.homeContainer img{
+    margin: 10px 20;
+}
+
+
+#mainDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mainDiv pre{
+ font-size:1em;
+ font-family: sans-serif;
+}
+
+#mainDiv p{
+    width: 60vw;
+    margin-top: 10px;
+}
+
+.answerContainer{
+    display:flex;
+    flex-direction:column;
+    width: 200px;
+    margin:10px;
+}
+.answerContainer button{
+    width:150px;
+    margin:10px 0;
+}
+
+.question{
+    margin:10px 47px;
+}
+
+textarea{
+resize: both
+}
+
+.btnMargin{
+ margin: 0 40px;
+ height: fit-content;
+}
+
+.modalRate label, .modalRate textarea{
+    width: 350px;
+}
+.modalRate {
+    display: none;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    z-index: 999;
+    background-color: #c79242e6;
+    width: 40vw;
+    height: 280px;
+    padding-top: 10px;
+}
+.align-center{
+    align-items: center;
+}
+.visible {
+    display: flex;
+}
+
+.rateContainer{
+    display:flex;
+}
+
+.feedbackContainer {
+    display:flex;
+    flex-direction: column;
+    margin: 10px 20px;
 }

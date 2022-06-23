@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,12 +29,15 @@ public class UserAccount {
     private User user;
 
     @OneToMany(mappedBy = "student")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<AccountCourseRelation> courseRelationsList;
 
     @OneToMany(mappedBy = "student")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<AccountTheoryMaterialRelation> theoryMaterialRelationList;
 
     @OneToMany(mappedBy = "student")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<AccountTaskRelation> accountTaskRelationsList;
 
     @Override

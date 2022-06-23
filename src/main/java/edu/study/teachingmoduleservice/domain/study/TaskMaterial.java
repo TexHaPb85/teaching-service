@@ -23,21 +23,24 @@ public class TaskMaterial implements Serializable {
     private String question;
     private String answer;
     private Float complexityValue;
+    private Float defaultComplexityValue;
+
+    @Enumerated(EnumType.STRING)
+    private TaskType taskType;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "paren_topic_id")
     private Topic parentTopic;
 
     @OneToMany(mappedBy = "task")
+    @JsonIgnore
     private List<AccountTaskRelation> studentRelationsList;
+
 
     @Override
     public String toString() {
         return "TaskMaterial{" +
-                "taskId='" + taskId + '\'' +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                ", complexityValue=" + complexityValue +
+                "taskId=" + taskId +
                 '}';
     }
 }
