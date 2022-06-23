@@ -15,7 +15,7 @@
         <div class="homeHeader">
             <h2>Courses</h2>
             <div>Your rate: <span th:text="${account.rateValue}"></span></div>
-            <a th:href="@{/logout}"  class="btn btn-success btnMargin">log out</a>
+            <a th:href="@{/logout}"  class="btn btn-danger btnMargin">log out</a>
         </div>
         <table class="homeTable" border="2px">
             <thead>
@@ -38,7 +38,7 @@
                 <td >
                     <form th:action="@{/courses/add}" method="post">
                         <input type="hidden" name="courseId" th:value="${course.courseId}" />
-                        <input type="submit" value="Add" class="btn btn-danger" />
+                        <input type="submit" value="Add" class="btn btn-success" />
                     </form>
                 </td>
             </tr>

@@ -3,10 +3,12 @@ package edu.study.teachingmoduleservice.services;
 import edu.study.teachingmoduleservice.domain.relation.AccountTaskRelation;
 import edu.study.teachingmoduleservice.domain.study.TaskMaterial;
 import edu.study.teachingmoduleservice.domain.study.TaskType;
+import edu.study.teachingmoduleservice.domain.study.TheoryMaterial;
 import edu.study.teachingmoduleservice.domain.user.User;
 import edu.study.teachingmoduleservice.domain.user.UserAccount;
 import edu.study.teachingmoduleservice.repository.AccountTaskRelationRepository;
 import edu.study.teachingmoduleservice.repository.TaskRepository;
+import edu.study.teachingmoduleservice.repository.TheoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,6 @@ import java.net.URLClassLoader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -30,29 +31,21 @@ import java.util.stream.Collectors;
 public class TaskServiceImpl {
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskServiceImpl.class);
     private final TaskRepository taskRepository;
-
     private final UserServiceImpl userService;
     private final AccountTaskRelationRepository accountTaskRelationRepository;
+    private final TheoryRepository theoryRepository;
 
     public TaskServiceImpl(
             TaskRepository taskRepository,
-            UserServiceImpl userService, AccountTaskRelationRepository accountTaskRelationRepository) {
+            UserServiceImpl userService, AccountTaskRelationRepository accountTaskRelationRepository, TheoryRepository theoryRepository) {
         this.taskRepository = taskRepository;
         this.userService = userService;
         this.accountTaskRelationRepository = accountTaskRelationRepository;
+        this.theoryRepository = theoryRepository;
     }
 
     public TaskMaterial getTaskById (String taskId) {
-        return taskRepository.getById(taskId);
-    }
-    public List<TaskMaterial> getTasksByTopicID(String topicID) {
-        try {
-            LOGGER.info("getAllTasks method returns all tasks");
-            return taskRepository.findAll();
-        } catch (Exception e){
-            LOGGER.error("exception is thrown in method getAllTasks");
-            return Collections.emptyList();
-        }
+        return taskRepository.findById(taskId).orElse(null);
     }
 
     public TaskMaterial findTopicScopedTaskForUser(String topicId, UserAccount userAccount) {
@@ -75,12 +68,14 @@ public class TaskServiceImpl {
         return taskWithSuitableComplexity;
     }
 
-    public Float processAnswer(String answer, TaskMaterial task, User user) {
+    public String processAnswer(String answer, TaskMaterial task, User user) {
         Long numberOfExecutedTasks = accountTaskRelationRepository.findAll()
                 .stream()
                 .filter(accountTaskRelation -> user.getAccount().getUserName().equals(accountTaskRelation.getStudent().getUserName()))
                 .count();
-
+        if(numberOfExecutedTasks == 0L){
+            numberOfExecutedTasks = 1L;
+        }
         Float markForTheTask = 0f;
         TaskType taskType = task.getTaskType();
         switch (taskType) {
@@ -92,7 +87,7 @@ public class TaskServiceImpl {
             }
             case WRITE_CODE: {
                 String codeOutput = compileJavaCode(answer);
-                if (codeOutput.equals(answer.split("[}]")[1])) {
+                if (codeOutput.equals(task.getAnswer())) {
                     markForTheTask = 1.0f;
                 }
                 break;
@@ -100,7 +95,7 @@ public class TaskServiceImpl {
         }
 
         Float oldRateValue = user.getAccount().getRateValue();
-        Float newRateValue = (oldRateValue * numberOfExecutedTasks + task.getComplexityValue() * markForTheTask)
+        Float newRateValue = (oldRateValue * numberOfExecutedTasks + markForTheTask)
                                           / (numberOfExecutedTasks +1);
         UserAccount updatedAcc = user.getAccount();
         updatedAcc.setRateValue(newRateValue);
@@ -110,16 +105,29 @@ public class TaskServiceImpl {
         AccountTaskRelation accountTaskRelation = new AccountTaskRelation();
         accountTaskRelation.setTask(task);
         accountTaskRelation.setRelationId(task.getTaskId() + "_" + user.getAccount().getUserName());
-        accountTaskRelation.setGradeOfTaskComplexity(0f); //TODO
+        accountTaskRelation.setGradeOfTaskComplexity(0.5f); //TODO
         accountTaskRelation.setDateOfPassing(LocalDateTime.now());
         accountTaskRelation.setGradeOfStudent(markForTheTask);
+        accountTaskRelation.setStudent(user.getAccount());
         accountTaskRelationRepository.save(accountTaskRelation);
 
-        return markForTheTask;
+        return accountTaskRelation.getRelationId();
     }
 
     public void graduateTaskComplexity(Float grade, String taskId, User user) {
-
+        TaskMaterial taskById = getTaskById(taskId);
+        if(taskById == null) {
+            TheoryMaterial theoryMaterial = theoryRepository.findById(taskId).orElse(null);
+            Float oldComplexity = theoryMaterial.getComplexityValue();
+            Float newComplexity = (grade + oldComplexity) / 2;
+            theoryMaterial.setComplexityValue(newComplexity);
+            theoryRepository.save(theoryMaterial);
+        } else {
+            Float oldComplexity = taskById.getComplexityValue();
+            Float newComplexity = (grade + oldComplexity) / 2;
+            taskById.setComplexityValue(newComplexity);
+            taskRepository.save(taskById);
+        }
     }
 
     private String compileJavaCode(String code) {
@@ -191,4 +199,7 @@ public class TaskServiceImpl {
         }
     }
 
+    public AccountTaskRelation findRelationById(String accountTaskRelationId) {
+        return accountTaskRelationRepository.findById(accountTaskRelationId).get();
+    }
 }

@@ -271,5 +271,11 @@ resize: both
 }
 
 .rateContainer{
-display:flex;
+    display:flex;
+}
+
+.feedbackContainer {
+    display:flex;
+    flex-direction: column;
+    margin: 10px 20px;
 }
